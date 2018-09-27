@@ -2,22 +2,49 @@ package ro.jademy.carrental;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Shop {
     // Q: what fields and methods should this class contain?
+    private Scanner scan = new Scanner(System.in);
 
     private List<Salesman> salesmenList = new ArrayList<>();
-    private void initList () {
+
+    public Shop() {
         salesmenList.add(new Salesman("Popescu", "Vasile", "user1", "1111"));
         salesmenList.add(new Salesman("Ionescu", "Bogdan", "user2", "2222"));
         salesmenList.add(new Salesman("Stroe", "Ion", "user3", "3333"));
     }
-    public boolean login(String username, String password) {
+
+    public boolean login() {
 
         // TODO: implement a basic user login
-        System.out.println("Welcome! Enter your username and password:");
 
+        String username = askUsername();
+        for (Salesman salesman : salesmenList) {
+            if (salesman.getUsername().equals(username)) {
+                String password = askPassword();
+                if (salesman.getPassword().equals(password)) {
+                    System.out.println("Bine ai venit! " + salesman.getFirstname() + " " + salesman.getLastname());
+                    return true;
+                }
+            }
+        }
+
+        System.out.println("Logare esuata!");
         return false;
+    }
+
+    private String askUsername() {
+        System.out.println("Welcome! Enter your username:");
+        String username = scan.nextLine();
+        return username;
+    }
+
+    private String askPassword() {
+        System.out.println("Welcome! Enter your password:");
+        String password = scan.nextLine();
+        return password;
     }
 
     public void showMenu() {

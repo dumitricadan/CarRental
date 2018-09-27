@@ -17,7 +17,7 @@ public abstract class Person {
         return lastname;
     }
 
-    public void showName () {
+    public void showName() {
         System.out.println(firstname + " " + lastname);
     }
 }

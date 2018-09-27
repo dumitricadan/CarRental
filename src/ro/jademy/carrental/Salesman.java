@@ -7,7 +7,7 @@ public class Salesman extends Person {
     private String username;
     private String password;
 
-    public Salesman(String firstname, String lastname, String username, String password)  {
+    public Salesman(String firstname, String lastname, String username, String password) {
         super(firstname, lastname);
         this.username = username;
         this.password = password;
@@ -20,6 +20,7 @@ public class Salesman extends Person {
     public String getUsername() {
         return username;
     }
+
     public void showName() {
         System.out.println("Polimorfism");
     }
