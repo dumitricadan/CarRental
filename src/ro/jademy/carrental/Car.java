@@ -8,7 +8,7 @@ public class Car {
     public Integer year;
 
     // Q: how can we better represent the car type?
-    public String carType; // coupe, sedan, hatchback, convertible, wagon, SUV
+    public String carType; // coupe, sedan, hatchback, convertible, wagon, SUV (ENUM)
 
     // Q: how can we better represent the motor type?
     public String fuelType; // diesel, gasoline, alternative

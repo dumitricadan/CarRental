@@ -1,11 +1,25 @@
 package ro.jademy.carrental;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Shop {
     // Q: what fields and methods should this class contain?
+
+    List<Salesman> salesmenList = new ArrayList<>();
+    salesmenList.add(
+        Salesman salesman1 = new Salesman("Popescu", "Vasile", "user1", "1111"));
+    salesmenList.add(
+        Salesman salesman2 = new Salesman("Ionescu", "Bogdan", "user2", "2222"));
+    salesmenList.add(
+        Salesman salesman3 = new Salesman("Stroe", "Ion", "user3", "3333"));
+
+
 
     public boolean login(String username, String password) {
 
         // TODO: implement a basic user login
+        System.out.println("Welcome! Enter your username and password:");
 
         return false;
     }
