@@ -1,17 +1,17 @@
 package ro.jademy.carrental.car;
 
 public class Engine {
-   private String fuelType;
+   private FuelType fuelType;
    private String capacity;
    private int horsepower;
 
-    public Engine(String fuelType, String capacity, int horsepower) {
+    public Engine(FuelType fuelType, String capacity, int horsepower) {
         this.fuelType = fuelType;
         this.capacity = capacity;
         this.horsepower = horsepower;
     }
 
-    public String getFuelType() {
+    public FuelType getFuelType() {
         return fuelType;
     }
 
