@@ -1,11 +1,13 @@
 package ro.jademy.carrental.car.audi;
 
-import com.sun.xml.internal.ws.api.pipe.Engine;
+import ro.jademy.carrental.car.*;
 import ro.jademy.carrental.car.CarType;
 import ro.jademy.carrental.car.TransmissionType;
 
+import java.math.BigDecimal;
+
 public class Qseven extends Audi {
-    public Qseven(Integer year, CarType carType, Integer doorNumber, String color, TransmissionType transmissionType, Engine engine, String basePrice) {
+    public Qseven(Integer year, Integer doorNumber, String color, Engine engine, BigDecimal basePrice) {
         super("Qseven", year, CarType.SUV, doorNumber, color, TransmissionType.AUTOMATIC, engine, basePrice);
     }
 }

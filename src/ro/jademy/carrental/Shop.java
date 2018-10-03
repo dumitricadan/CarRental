@@ -1,5 +1,13 @@
 package ro.jademy.carrental;
 
+import ro.jademy.carrental.car.Car;
+import ro.jademy.carrental.car.Engine;
+import ro.jademy.carrental.car.FuelType;
+import ro.jademy.carrental.car.dacia.Duster;
+import ro.jademy.carrental.car.dacia.Logan;
+import ro.jademy.carrental.car.dacia.Sandero;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,11 +17,26 @@ public class Shop {
     private Scanner scan = new Scanner(System.in);
 
     private List<Salesman> salesmenList = new ArrayList<>();
+    private List<Car> carList = new ArrayList<>();
 
     public Shop() {
         salesmenList.add(new Salesman("Popescu", "Vasile", "user1", "1111"));
         salesmenList.add(new Salesman("Ionescu", "Bogdan", "user2", "2222"));
         salesmenList.add(new Salesman("Stroe", "Ion", "user3", "3333"));
+
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Logan(2018, 4, "Black", new Engine(FuelType.GASOLINE, 1400, 90), new BigDecimal(100)));
+        carList.add(new Sandero(2018, 5, "Blue", new Engine(FuelType.DIESEL, 1500, 110), new BigDecimal(300)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+
     }
 
     public boolean login() {
