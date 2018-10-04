@@ -77,4 +77,12 @@ public abstract class Car {
     public CarState getCarState() {
         return carState;
     }
+
+    public void showCarDetails() {
+        String result = String.format("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15d%-15d%-15s%-15s",make, model, year.toString(), carType.toString(),
+                doorNumber.toString(), color, transmissionType.toString(), engine.getCapacity(), engine.getHorsepower(), engine.getFuelType().toString()
+        , basePrice.toString());
+        System.out.println(result);
+
+    }
 }

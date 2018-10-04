@@ -1,9 +1,9 @@
 package ro.jademy.carrental.car;
 
 public class Engine {
-   private FuelType fuelType;
-   private int capacity;
-   private int horsepower;
+    private FuelType fuelType;
+    private int capacity;
+    private int horsepower;
 
     public Engine(FuelType fuelType, int capacity, int horsepower) {
         this.fuelType = fuelType;

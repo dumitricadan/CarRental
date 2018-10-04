@@ -1,8 +1,8 @@
 package ro.jademy.carrental.car.audi;
 
-import ro.jademy.carrental.car.*;
 import ro.jademy.carrental.car.Car;
 import ro.jademy.carrental.car.CarType;
+import ro.jademy.carrental.car.Engine;
 import ro.jademy.carrental.car.TransmissionType;
 
 import java.math.BigDecimal;

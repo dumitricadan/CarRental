@@ -3,9 +3,15 @@ package ro.jademy.carrental;
 import ro.jademy.carrental.car.Car;
 import ro.jademy.carrental.car.Engine;
 import ro.jademy.carrental.car.FuelType;
+import ro.jademy.carrental.car.audi.Afour;
+import ro.jademy.carrental.car.audi.Asix;
+import ro.jademy.carrental.car.audi.Qseven;
 import ro.jademy.carrental.car.dacia.Duster;
 import ro.jademy.carrental.car.dacia.Logan;
 import ro.jademy.carrental.car.dacia.Sandero;
+import ro.jademy.carrental.car.mercedes.Aclasse;
+import ro.jademy.carrental.car.mercedes.Bclasse;
+import ro.jademy.carrental.car.mercedes.Eclasse;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -27,22 +33,19 @@ public class Shop {
         carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
         carList.add(new Logan(2018, 4, "Black", new Engine(FuelType.GASOLINE, 1400, 90), new BigDecimal(100)));
         carList.add(new Sandero(2018, 5, "Blue", new Engine(FuelType.DIESEL, 1500, 110), new BigDecimal(300)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
-        carList.add(new Duster(2017, 5, "White", new Engine(FuelType.DIESEL, 1500, 150), new BigDecimal(500)));
+        carList.add(new Afour(2016, 4, "Red", new Engine(FuelType.GASOLINE, 1800, 180), new BigDecimal(600)));
+        carList.add(new Asix(2017, 4, "Black", new Engine(FuelType.DIESEL, 2000, 180), new BigDecimal(700)));
+        carList.add(new Qseven(2015, 5, "White", new Engine(FuelType.DIESEL, 2500, 200), new BigDecimal(1000)));
+        carList.add(new Aclasse(2017, 5, "White", new Engine(FuelType.HYBRID, 1800, 150), new BigDecimal(500)));
+        carList.add(new Bclasse(2018, 5, "Blue", new Engine(FuelType.GASOLINE, 1400, 130), new BigDecimal(400)));
+        carList.add(new Eclasse(2018, 5, "Black", new Engine(FuelType.DIESEL, 2200, 200), new BigDecimal(900)));
+        carList.add(new Afour(2017, 4, "White", new Engine(FuelType.DIESEL, 1600, 160), new BigDecimal(700)));
+        carList.add(new Duster(2016, 5, "Red", new Engine(FuelType.GASOLINE, 1800, 150), new BigDecimal(400)));
+        carList.add(new Sandero(2016, 5, "White", new Engine(FuelType.GASOLINE, 1400, 90), new BigDecimal(200)));
 
     }
 
     public boolean login() {
-
-        // TODO: implement a basic user login
-
         String username = askUsername();
         for (Salesman salesman : salesmenList) {
             if (salesman.getUsername().equals(username)) {
@@ -83,6 +86,30 @@ public class Shop {
         System.out.println("4. Check income");
         System.out.println("5. Logout");
         System.out.println("6. Exit");
+
+        System.out.println("Enter your option below:");
+        int option = scan.nextInt();
+        checkOption(option);
+    }
+
+
+    private void checkOption(int option) {
+        switch (option) {
+            case 1:
+                listAllCars();
+                showListMenuOptions();
+                break;
+            case 2:
+                listAvailableCars();
+                break;
+            case 3:
+                listRentedCars();
+                break;
+
+            default:
+                System.out.println("Wrong option!");
+                break;
+        }
     }
 
     public void showListMenuOptions() {
@@ -95,6 +122,105 @@ public class Shop {
 
         System.out.println("4. Back to previous menu");
 
+        System.out.println();
+        System.out.println("Enter your option below:");
+        int option = scan.nextInt();
+        checkSubMenuOption(option);
+    }
+
+    private void checkSubMenuOption(int option) {
+        switch (option) {
+            case 1:
+                filterByMake();
+                break;
+            case 2:
+                filterByModel();
+                break;
+            case 3:
+                filterByBudget();
+                break;
+            case 4:
+                showMenu();
+                break;
+
+            default:
+                System.out.println("Wrong option!");
+                break;
+        }
+    }
+
+    public void listAllCars() {
+        showHeader();
+        for (Car car : carList) {
+            car.showCarDetails();
+        }
+    }
+
+    public void listAvailableCars() {
+        showHeader();
+        for (Car car : carList) {
+            if (!car.getCarState().isRented()) {
+                car.showCarDetails();
+            }
+        }
+    }
+
+    public void listRentedCars() {
+        showHeader();
+        for (Car car : carList) {
+            if (car.getCarState().isRented()) {
+                car.showCarDetails();
+            }
+        }
+    }
+
+    private void showHeader() {
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+        String header = String.format("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s", "MAKE", "MODEL", "YEAR", "CAR TYPE", "DOOR NUMBER", "COLOR", "TRANSMITION", "CAPACITY", "HORSE POWER", "FUEL TYPE", "PRICE");
+        System.out.println(header);
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------");
+    }
+
+    private void filterByMake() {
+        System.out.println("Enter the manufacturer:");
+        String option = scan.next();
+        List<Car> sublist = new ArrayList<>();
+        for (Car car : carList) {
+            if (car.getMake().equals(option)) {
+                sublist.add(car);
+            }
+        }
+        for (Car car : sublist) {
+            car.showCarDetails();
+        }
+    }
+
+    private void filterByModel() {
+        System.out.println("Enter the model:");
+        String option = scan.next();
+        List<Car> sublist = new ArrayList<>();
+        for (Car car : carList) {
+            if (car.getModel().equals(option)) {
+                sublist.add(car);
+            }
+        }
+        for (Car car : sublist) {
+            car.showCarDetails();
+        }
+    }
+
+    private void filterByBudget() {
+        System.out.println("Enter the price:");
+        BigDecimal option = scan.nextBigDecimal();
+        List<Car> sublist = new ArrayList<>();
+        for (Car car : carList) {
+            if (car.getBasePrice().equals(option)) {
+                sublist.add(car);
+            }
+        }
+        for (Car car : sublist) {
+            car.showCarDetails();
+        }
     }
 
     public void calculatePrice(int numberOfDays) {
