@@ -14,9 +14,7 @@ import ro.jademy.carrental.car.mercedes.Bclasse;
 import ro.jademy.carrental.car.mercedes.Eclasse;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Shop {
     // Q: what fields and methods should this class contain?
@@ -84,7 +82,8 @@ public class Shop {
         System.out.println("3. List rented cars");
         System.out.println("4. Check income");
         System.out.println("5. Logout");
-        System.out.println("6. Exit");
+        System.out.println("6. Sort");
+        System.out.println("7. Exit");
 
         System.out.println("Enter your option below:");
         int option = scan.nextInt();
@@ -103,6 +102,9 @@ public class Shop {
                 break;
             case 3:
                 listRentedCars();
+                break;
+            case 6:
+                sortMenu();
                 break;
 
             default:
@@ -218,6 +220,122 @@ public class Shop {
             }
         }
         for (Car car : sublist) {
+            car.showCarDetails();
+        }
+    }
+    public void sortCarList() {
+        List<Car> cars = new ArrayList<>(carList);
+        Collections.sort(cars);
+        for(Car car:cars) {
+            car.showCarDetails();
+        }
+    }
+
+    public void sortMenu() {
+
+        System.out.println("1. Sort by make");
+        System.out.println("2. Sort by model");
+        System.out.println("3. Sort by budget ascending");
+        System.out.println("4. Sort by budget descending");
+        System.out.println("5. Back to previous menu");
+        int option = scan.nextInt();
+        sortMenuUserInput(option);
+    }
+
+    private void sortMenuUserInput(int option) {
+        switch (option) {
+            case 1:
+                sortCarList();
+                sortMenu();
+                break;
+            case 2:
+                sortbyModel();
+                sortMenu();
+                break;
+            case 3:
+                sortbyPriceAscending();
+                sortMenu();
+                break;
+            case 4:
+                sortbyPriceDescending();
+                sortMenu();
+                break;
+            case 5:
+                showMenu();
+                break;
+
+            default:
+                System.out.println("Wrong option!");
+                break;
+        }
+    }
+
+    public void sortbyModel() {
+        List<Car> cars = new ArrayList<>(carList);
+        Comparator<Car> modelComparator = new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getModel().compareTo(o2.getModel());
+            }
+        };
+        Collections.sort(cars, modelComparator);
+        for(Car car:cars) {
+            car.showCarDetails();
+        }
+    }
+
+    public void sortbyDoorNumber() {
+        List<Car> cars = new ArrayList<>(carList);
+        Comparator<Car> doorNumberComparator = new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getDoorNumber().compareTo(o2.getDoorNumber());
+            }
+        };
+        Collections.sort(cars, doorNumberComparator);
+        for(Car car:cars) {
+            car.showCarDetails();
+        }
+    }
+
+    public void sortbyEngine() {
+        List<Car> cars = new ArrayList<>(carList);
+        Comparator<Car> engineComparator = new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getEngine().compareTo(o2.getEngine());
+            }
+        };
+        Collections.sort(cars, engineComparator);
+        for(Car car:cars) {
+            car.showCarDetails();
+        }
+    }
+
+    public void sortbyPriceAscending() {
+        List<Car> cars = new ArrayList<>(carList);
+        Comparator<Car> priceComparator = new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o1.getBasePrice().compareTo(o2.getBasePrice());
+            }
+        };
+        Collections.sort(cars, priceComparator);
+        for(Car car:cars) {
+            car.showCarDetails();
+        }
+    }
+
+    public void sortbyPriceDescending() {
+        List<Car> cars = new ArrayList<>(carList);
+        Comparator<Car> priceComparator = new Comparator<Car>() {
+            @Override
+            public int compare(Car o1, Car o2) {
+                return o2.getBasePrice().compareTo(o1.getBasePrice());
+            }
+        };
+        Collections.sort(cars, priceComparator);
+        for(Car car:cars) {
             car.showCarDetails();
         }
     }

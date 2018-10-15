@@ -1,6 +1,6 @@
 package ro.jademy.carrental;
 
-public class Salesman extends Person {
+public class Salesman extends Person implements Comparable<Salesman> {
 
     // Q: how can we avoid duplicate code in the salesman and the customer classes?
 
@@ -23,5 +23,10 @@ public class Salesman extends Person {
 
     public void showName() {
         System.out.println("Polimorfism");
+    }
+
+    @Override
+    public int compareTo(Salesman o) {
+        return 0;
     }
 }

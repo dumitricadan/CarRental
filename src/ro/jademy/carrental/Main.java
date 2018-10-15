@@ -14,6 +14,7 @@ public class Main {
         if (loggedIn) {
             shop.showMenu();
         }
+       //shop.sortbyPriceDescending();
     }
 
 }

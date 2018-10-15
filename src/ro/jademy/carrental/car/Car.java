@@ -3,8 +3,9 @@ package ro.jademy.carrental.car;
 
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
-public abstract class Car {
+public abstract class Car implements Comparable<Car> {
 
     // Q: how can we better represent the car make?
     protected String make;
@@ -83,6 +84,47 @@ public abstract class Car {
                 doorNumber.toString(), color, transmissionType.toString(), engine.getCapacity(), engine.getHorsepower(), engine.getFuelType().toString()
         , basePrice.toString());
         System.out.println(result);
+    }
 
+    @Override
+    public int compareTo(Car o) {
+        int makeCompare = make.compareTo(o.make);
+        if (makeCompare != 0) {
+            return makeCompare;
+        }
+
+        int modelCompare = model.compareTo(o.model);
+        if (modelCompare != 0) {
+            return modelCompare;
+        }
+
+        int doorNumberCompare = doorNumber.compareTo(o.doorNumber);
+        if (doorNumberCompare != 0) {
+            return doorNumberCompare;
+        }
+
+        int engineCompare = engine.compareTo(o.getEngine());
+        if(engineCompare != 0) {
+            return engineCompare;
+        }
+
+        int priceCompare = basePrice.compareTo(o.getBasePrice());
+        if(priceCompare != 0) {
+            return priceCompare;
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(make, car.make) && Objects.equals(model, car.model) && Objects.equals(year, car.year) && carType == car.carType && Objects.equals(doorNumber, car.doorNumber) && Objects.equals(color, car.color) && transmissionType == car.transmissionType && Objects.equals(engine, car.engine) && Objects.equals(basePrice, car.basePrice) && Objects.equals(carState, car.carState);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(make, model, year, carType, doorNumber, color, transmissionType, engine, basePrice, carState);
     }
 }
